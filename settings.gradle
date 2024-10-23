@@ -1,0 +1,5 @@
+rootProject.name = 'weather-service'
+include 'web'
+include 'background-process'
+include 'common'
+
