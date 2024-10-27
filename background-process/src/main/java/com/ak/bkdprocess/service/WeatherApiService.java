@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class WeatherApiService {
     private final WebClient webClient;
-    private static final String API_URL = "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng";
+    private static final String API_URL = "https://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng";
 
     public WeatherApiService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl(API_URL).build();

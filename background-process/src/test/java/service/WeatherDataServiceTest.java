@@ -25,7 +25,7 @@ class WeatherDataServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        weatherDataService = new WeatherDataService(weatherApiService, weatherRepository);
+        weatherDataService = new WeatherDataService(weatherApiService);
     }
     
     @Test
