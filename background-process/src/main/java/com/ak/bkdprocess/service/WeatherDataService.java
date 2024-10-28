@@ -37,20 +37,13 @@ public class WeatherDataService {
     }
 
     @Scheduled(fixedRate = 60 * 1000) // 30 minutes
-    public void updateWeatherData() {
+    public void updateWeatherData() throws Exception {
         logger.info("Starting scheduled weather data update");
 
-        weatherApiService.fetchWeatherData()
-                .doOnNext(data -> logger.debug("Received XML data of length: {}", data.length()))
-                .flatMap(this::processWeatherData)
-                .doOnError(error -> logger.error("Error updating weather data", error))
-                .subscribe(
-                        result -> logger.info("Successfully updated weather data"),
-                        error -> logger.error("Failed to update weather data", error)
-                );
+        processWeatherData(weatherApiService.fetchWeatherXMLData());
     }
 
-    private Mono<Void> processWeatherData(String xmlString) {
+    private void processWeatherData(String xmlString) {
         try {
             JAXBContext jaxbContext;
             try {
@@ -62,40 +55,10 @@ public class WeatherDataService {
                 e.printStackTrace();
             }
 
-            return Mono.empty();
+//            return Mono.empty();
         } catch (Exception e) {
-            return Mono.error(new WeatherException("Error processing weather data", e));
-        }
-    }
-    private String getElementTextContent(Element parent, String tagName) {
-        NodeList elements = parent.getElementsByTagName(tagName);
-        return elements.getLength() > 0 ? elements.item(0).getTextContent() : null;
-    }
-
-    private Double parseDouble(String value) {
-        try {
-            return value != null ? Double.parseDouble(value) : null;
-        } catch (NumberFormatException e) {
-            logger.warn("Failed to parse double value: {}", value);
-            return null;
+            logger.error("Error processing weather data", e);
         }
     }
 
-    private Integer parseInt(String value) {
-        try {
-            return value != null ? Integer.parseInt(value) : null;
-        } catch (NumberFormatException e) {
-            logger.warn("Failed to parse integer value: {}", value);
-            return null;
-        }
-    }
-
-    private LocalDateTime parseForecastTime(String value) {
-        try {
-            return value != null ? LocalDateTime.parse(value, DATE_TIME_FORMATTER) : null;
-        } catch (Exception e) {
-            logger.warn("Failed to parse datetime value: {}", value);
-            return null;
-        }
-    }
 }

@@ -1,6 +1,8 @@
 package com.ak.web.controller;
 
 import com.ak.common.dto.WeatherData;
+import com.ak.common.entity.Forecast;
+import com.ak.common.entity.Location;
 import com.ak.common.exceptions.WeatherException;
 import com.ak.web.service.WeatherService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,10 +51,10 @@ public class WeatherController {
             )
     })
     @GetMapping("/location/{location}")
-    public ResponseEntity<WeatherData> getWeatherByLocation(@PathVariable String location) {
+    public ResponseEntity<Location> getWeatherByLocation(@PathVariable String location) {
         logger.info("Received request for weather data at location: {}", location);
         try {
-            WeatherData weatherData = weatherService.getWeatherByLocation(location);
+            Location weatherData = weatherService.getWeatherByLocation(location);
             return ResponseEntity.ok(weatherData);
         } catch (WeatherException e) {
             logger.warn("Failed to get weather data for location: {}", location, e);
@@ -60,10 +62,10 @@ public class WeatherController {
         }
     }
 
-    @GetMapping("/current")
-    public ResponseEntity<List<WeatherData>> getCurrentWeather() {
+    @GetMapping
+    public ResponseEntity<List<Forecast>> getCurrentWeather() {
         logger.info("Received request for current weather data");
-        List<WeatherData> weatherData = weatherService.getCurrentWeather();
+        List<Forecast> weatherData = weatherService.getCurrentWeather();
         return ResponseEntity.ok(weatherData);
     }
 

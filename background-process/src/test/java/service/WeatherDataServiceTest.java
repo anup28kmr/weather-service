@@ -29,7 +29,7 @@ class WeatherDataServiceTest {
     }
     
     @Test
-    void updateWeatherData_Success() {
+    void updateWeatherData_Success() throws Exception {
         // Sample XML response
         String xmlResponse = """
             <?xml version="1.0" encoding="UTF-8"?>
@@ -47,7 +47,7 @@ class WeatherDataServiceTest {
             </observations>
             """;
         
-        when(weatherApiService.fetchWeatherData()).thenReturn(Mono.just(xmlResponse));
+        when(weatherApiService.fetchWeatherXMLData()).thenReturn(xmlResponse);
         when(weatherRepository.save(any(WeatherEntity.class))).thenReturn(new WeatherEntity());
         
         weatherDataService.updateWeatherData();
