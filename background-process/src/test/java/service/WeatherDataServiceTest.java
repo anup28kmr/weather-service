@@ -1,15 +1,12 @@
 package service;
 
-import com.ak.bkdprocess.repository.WeatherRepository;
 import com.ak.bkdprocess.service.WeatherApiService;
 import com.ak.bkdprocess.service.WeatherDataService;
-import com.ak.common.entity.WeatherEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import reactor.core.publisher.Mono;
-import java.time.LocalDateTime;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 

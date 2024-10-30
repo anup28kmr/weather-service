@@ -1,42 +1,46 @@
 package com.ak.common.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
-@Entity
-@Table(name = "forecast")
-@XmlRootElement(name = "forecast")
-@XmlAccessorType(XmlAccessType.FIELD)
+import java.util.List;
+
 @Data
-public class Forecast {
+@Entity
+@Table(name = "night")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Night {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @XmlAttribute(name = "date")
-  private String date;
+  @XmlElement(name = "phenomenon")
+  private String phenomenon;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @XmlElement(name = "tempmin")
+  private Integer tempMin;
+
+  @XmlElement(name = "tempmax")
+  private Integer tempMax;
+
+  @Column(length = 1024) // Assuming text can be long
+  private String text;
+
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "night_id")
-  @XmlElement(name = "night")
-  private Night night;
-
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "day_id")
-  @XmlElement(name = "day")
-  private Day day;
+  @XmlElement(name = "place")
+  private List<Place> places;
 
 }
