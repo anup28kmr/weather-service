@@ -13,13 +13,11 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.Data;
 
 @Entity
 @Table(name = "forecast")
 @XmlRootElement(name = "forecast")
 @XmlAccessorType(XmlAccessType.FIELD)
-@Data
 public class Forecast {
 
   @Id
@@ -39,4 +37,35 @@ public class Forecast {
   @XmlElement(name = "day")
   private Day day;
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public Night getNight() {
+    return night;
+  }
+
+  public void setNight(Night night) {
+    this.night = night;
+  }
+
+  public Day getDay() {
+    return day;
+  }
+
+  public void setDay(Day day) {
+    this.day = day;
+  }
 }

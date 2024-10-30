@@ -25,7 +25,7 @@ public class WeatherDataService {
   @Autowired
   private WeatherApiService weatherApiService;
 
-  @Scheduled(fixedRate = 60 * 1000) // 30 minutes
+  @Scheduled(fixedRateString = "${app.scheduled.interval}")
   public void updateWeatherData() {
     logger.info("Starting scheduled weather data update");
 
