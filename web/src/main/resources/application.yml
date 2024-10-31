@@ -5,7 +5,7 @@ spring:
     password: weather
 
 server:
-  port: 8080
+  port: 8082
 
 # OPENAPI
 springdoc:
