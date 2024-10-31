@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/weather?createDatabaseIfNotExist=true
-    username: postgres
-    password: root
+    url: jdbc:postgresql://localhost:5432/weather
+    username: weather
+    password: weather
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -15,6 +15,6 @@ server:
 
 app:
   scheduled:
-    interval: 60000
+    interval: 1800000   #30 minutes
 
 weather-api: https://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng

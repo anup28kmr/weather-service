@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @EntityScan("com.ak.common.entity")
-@SpringBootApplication(scanBasePackages = {"com.ak.common.mapper","com.ak.bkdprocess"})
+@SpringBootApplication(scanBasePackages = {"com.ak.common.mapper", "com.ak.bkdprocess"})
 @EnableJpaRepositories
 public class BackendProcessMain {
   public static void main(String[] args) {

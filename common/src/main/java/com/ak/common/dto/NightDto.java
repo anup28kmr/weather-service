@@ -1,73 +1,34 @@
 package com.ak.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@XmlRootElement(name = "night")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class NightDto {
   public String phenomenon;
+  @XmlElement(name = "tempmin")
   public Integer tempMin;
+  @XmlElement(name = "tempmax")
   public Integer tempMax;
   public String text;
+  @XmlElement(name = "place")
   public List<PlaceDto> places;
-  public String sea;
   public String peipsi;
 
-  public String getPhenomenon() {
-    return phenomenon;
-  }
 
-  public void setPhenomenon(String phenomenon) {
-    this.phenomenon = phenomenon;
-  }
-
-
-  public String getText() {
-    return text;
-  }
-
-  public void setText(String text) {
-    this.text = text;
-  }
-
-  public String getSea() {
-    return sea;
-  }
-
-  public void setSea(String sea) {
-    this.sea = sea;
-  }
-
-  public String getPeipsi() {
-    return peipsi;
-  }
-
-  public void setPeipsi(String peipsi) {
-    this.peipsi = peipsi;
-  }
-
-  public Integer getTempMin() {
-    return tempMin;
-  }
-
-  public void setTempMin(Integer tempMin) {
-    this.tempMin = tempMin;
-  }
-
-  public Integer getTempMax() {
-    return tempMax;
-  }
-
-  public void setTempMax(Integer tempMax) {
-    this.tempMax = tempMax;
-  }
-
-  public List<PlaceDto> getPlaces() {
-    return places;
-  }
-
-  public void setPlaces(List<PlaceDto> places) {
-    this.places = places;
-  }
 }

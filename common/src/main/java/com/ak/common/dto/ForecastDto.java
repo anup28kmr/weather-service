@@ -2,36 +2,28 @@ package com.ak.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@XmlRootElement(name = "forecast")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ForecastDto {
   @JsonProperty("night")
   public NightDto night;
   @JsonProperty("day")
   public DayDto day;
+
+  @XmlAttribute(name = "date")
   private String date;
-
-  public String getDate() {
-    return date;
-  }
-
-  public void setDate(String date) {
-    this.date = date;
-  }
-
-  public NightDto getNight() {
-    return night;
-  }
-
-  public void setNight(NightDto night) {
-    this.night = night;
-  }
-
-  public DayDto getDay() {
-    return day;
-  }
-
-  public void setDay(DayDto day) {
-    this.day = day;
-  }
 }
